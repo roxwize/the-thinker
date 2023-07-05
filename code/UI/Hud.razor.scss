@@ -1,0 +1,137 @@
+﻿Hud {
+  font-family: Poppins;
+  
+  .box {
+    border-radius: 5%;
+    color: black;
+    padding: 20px;
+  }
+  
+  .icon {
+    font-family: MaterialIcons;
+    align-items: center;
+    font-size: 40px;
+  }
+  
+  .hide {
+    opacity: 0;
+    display: none;
+  }
+  
+  .center {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  KillScreen {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff5;
+    flex-direction: column;
+    
+    & > span.killer-name {
+      font-size: 40px;
+    }
+    
+    & strong.killer-name {
+      font-weight: bold;
+      margin: 0 10px;
+    }
+  }
+  
+  KillFeed {
+    //width: 40%;
+    overflow: hidden;
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    flex-direction: column;
+  }
+
+  KillFeedEntry {
+    background-color: #fff8;
+    width: 100%;
+    flex-direction: row;
+    transition: all 0.2s ease-out;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+
+    .killfeed-left, .killfeed-right {
+      font-weight: bold;
+      padding: 0 12px;
+    }
+    
+    &:intro {
+      opacity: 0;
+      transform: translateX(-100);
+    }
+    
+    &:outro {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.2s ease-in;
+      top: 10px;
+    }
+  }
+  
+  InfoDisplay {
+    position: absolute;
+    bottom: 26px;
+    left: 26px;
+    width: 30%;
+    background-color: #fffe;
+    flex-direction: column;
+
+    .info-top {
+      align-items: center;
+      font-size: 40px;
+      margin-bottom: 12px;
+      #user-avatar {
+        border-radius: 50%;
+        margin-right: 25px;
+      }
+      #user-name {
+        font-weight: bold;
+      }
+    }
+  }
+  
+  WeaponDisplay {
+    position: absolute;
+    bottom: 26px;
+    right: 26px;
+    width: 30%;
+    background-color: #fffe;
+    flex-direction: column;
+  }
+  
+  .bar {
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 5px;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  HealthBar {
+    color: white;
+    &.alive {
+      background-color: #f53131;
+    }
+    &.dead {
+      background-color: #2b303c;
+    }
+  }
+  
+  AmmoBar {
+    color: black;
+    background-color: #e1da6b;
+  }
+}

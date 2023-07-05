@@ -1,0 +1,15 @@
+﻿@using Sandbox
+@using Sandbox.UI
+
+@namespace ThekiFake.TheThinker
+@inherits Panel
+
+<root>
+    <div class="info-top">
+        <img id="user-avatar" src="avatar:@Game.LocalClient.SteamId" alt=""/>
+        <label id="user-name">@Game.LocalClient.Name</label>
+    </div>
+    <div class="info-bottom">
+        <HealthBar class="bar" />
+    </div>
+</root>

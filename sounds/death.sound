@@ -1,0 +1,15 @@
+{
+  "UI": false,
+  "Volume": "1.00,1.00,0",
+  "Pitch": "0.95,1.00,1",
+  "Decibels": 90,
+  "SelectionMode": "RandomExclusive",
+  "Sounds": [
+    "sounds/death01.vsnd",
+    "sounds/death02.vsnd",
+    "sounds/death03.vsnd",
+    "sounds/death04.vsnd"
+  ],
+  "MaximumDistance": 1870.0942,
+  "MinimumDistance": 93.504715
+}

@@ -1,0 +1,44 @@
+﻿@using System
+@using Sandbox
+@using Sandbox.UI
+
+@namespace ThekiFake.TheThinker
+@inherits Panel
+
+<root>
+    <div class="info-top">
+        <span style="font-weight: bold;">@(Active.PrintName ?? "None")</span> (<span>@AmmoName</span>)
+    </div>
+    <div class="info-bottom">
+        <AmmoBar class="bar" />
+    </div>
+</root>
+
+@code
+{
+    private static ThinkerPlayer Owner = (ThinkerPlayer)Game.LocalPawn;
+    private Weapon Active = Owner.ActiveWeapon;
+    
+    private string AmmoName = "None";
+    
+    public override void Tick()
+    {
+        base.Tick();
+    
+        switch (Active.AmmoType)
+        {
+            case AmmoType.Pistol:
+                AmmoName = "9mm";
+                break;
+            case AmmoType.None:
+            default:
+                AmmoName = "None";
+                break;
+        }
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine( AmmoName );
+    }
+}
