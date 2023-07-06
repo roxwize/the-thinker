@@ -4,6 +4,7 @@ using Sandbox;
 using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
+using Sandbox.Services;
 
 namespace ThekiFake.TheThinker;
 
@@ -104,8 +105,7 @@ public partial class ThinkerPlayer : AnimatedEntity
 		Components.Remove( Controller );
 		PlaySound( "death" );
 		
-		// add ammo box
-		if ( Game.IsServer ) SpawnAmmo( Position, Rotation );
+		if ( LastAttackerEntity != null && LastAttackerEntity.IsValid && Game.IsServer ) OnKillPlayer( To.Single( LastAttackerEntity.Client ) );
 
 		EnableAllCollisions = false;
 		EnableDrawing = false;
@@ -115,24 +115,11 @@ public partial class ThinkerPlayer : AnimatedEntity
 			child.EnableDrawing = false;
 		}
 	}
-
-	private void SpawnAmmo( Vector3 pos, Rotation rot )
+	
+	[ClientRpc]
+	private void OnKillPlayer()
 	{
-		var amts = new List<int>();
-
-		for ( int i = 0; i < AmmoContainer.AmmoTypes; i++ )
-		{
-			amts.Add( (int)Math.Floor( Ammo.Ammo[i] / 3d ) );
-		}
-		
-		var ammo = new AmmoCrate( amts );
-		ammo.Position = pos + Vector3.Up * 20;
-		ammo.Rotation = rot;
-		// might have this be done inside of the ammocrate in the future
-		ammo.SetModel( "models/weapons/ammo.vmdl" );
-		ammo.Scale = 0.5f;
-		ammo.SetupPhysicsFromModel( PhysicsMotionType.Dynamic, false );
-		ammo.Tags.Add( "ammo" );
+		Stats.Increment( "kills", 1 );
 	}
 
 	[ClientRpc]
